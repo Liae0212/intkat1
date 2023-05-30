@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Catalogs List
+{% endblock %}
+
+{% block body %}
+    <h1>Catalogs List</h1>
+    {% if pagination is defined and pagination.items|length %}
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'ID', 'catalog.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Title', 'catalog.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Artist', 'catalog.artist') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Genre', 'catalog.genre') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Created At', 'catalog.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Updated At', 'catalog.updatedAt') }}</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for catalog in pagination.items %}
+                <tr>
+                    <td>{{ catalog.getId() }}</td>
+                    <td>{{ catalog.getTitle() }}</td>
+                    <td>{{ catalog.getArtist() }}</td>
+                    <td>{{ catalog.getGenre() }}</td>
+                    <td>{{ catalog.getCreatedAt()|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ catalog.getUpdatedAt()|date('Y-m-d H:i:s') }}</td>
+                    <td>
+                        <a href="{{ path('catalog_show', {'id': catalog.getId()}) }}" title="View">
+                            View
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    {% else %}
+        <p>No catalogs found.</p>
+    {% endif %}
+{% endblock %}

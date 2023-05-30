@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Catalog Details - ID: {{ catalog.getId() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Catalog Details - ID: {{ catalog.getId() }}</h1>
+    <dl>
+        <dt>ID:</dt>
+        <dd>{{ catalog.getId() }}</dd>
+        <dt>Title:</dt>
+        <dd>{{ catalog.getTitle() }}</dd>
+        <dt>Artist:</dt>
+        <dd>{{ catalog.getArtist() }}</dd>
+        <dt>Genre:</dt>
+        <dd>{{ catalog.getGenre() }}</dd>
+        <dt>Created At:</dt>
+        <dd>{{ catalog.getCreatedAt()|date('Y-m-d H:i:s') }}</dd>
+        <dt>Updated At:</dt>
+        <dd>{{ catalog.getUpdatedAt()|date('Y-m-d H:i:s') }}</dd>
+    </dl>
+    <p>
+        <a href="{{ path('catalog_index') }}" title="Back to List">
+            Back to List
+        </a>
+    </p>
+{% endblock %}
