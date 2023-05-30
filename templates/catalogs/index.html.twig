@@ -15,8 +15,6 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'ID', 'catalog.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Title', 'catalog.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Artist', 'catalog.artist') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Genre', 'catalog.genre') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Created At', 'catalog.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Updated At', 'catalog.updatedAt') }}</th>
                 <th>Actions</th>
@@ -27,8 +25,6 @@
                 <tr>
                     <td>{{ catalog.getId() }}</td>
                     <td>{{ catalog.getTitle() }}</td>
-                    <td>{{ catalog.getArtist() }}</td>
-                    <td>{{ catalog.getGenre() }}</td>
                     <td>{{ catalog.getCreatedAt()|date('Y-m-d H:i:s') }}</td>
                     <td>{{ catalog.getUpdatedAt()|date('Y-m-d H:i:s') }}</td>
                     <td>

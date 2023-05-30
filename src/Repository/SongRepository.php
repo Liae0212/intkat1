@@ -2,28 +2,28 @@
 
 namespace App\Repository;
 
-use App\Entity\Catalog;
+use App\Entity\Song;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Catalog>
+ * @extends ServiceEntityRepository<Song>
  *
- * @method Catalog|null find($id, $lockMode = null, $lockVersion = null)
- * @method Catalog|null findOneBy(array $criteria, array $orderBy = null)
- * @method Catalog[]    findAll()
- * @method Catalog[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Song|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Song|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Song[]    findAll()
+ * @method Song[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CatalogRepository extends ServiceEntityRepository
+class SongRepository extends ServiceEntityRepository
 {
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Catalog::class);
+        parent::__construct($registry, Song::class);
     }
 
-    public function save(Catalog $entity, bool $flush = false): void
+    public function save(Song $entity, bool $flush = false): void
     {
         $now = new \DateTimeImmutable();
         $entity->setUpdatedAt($now);
@@ -39,7 +39,7 @@ class CatalogRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Catalog $entity, bool $flush = false): void
+    public function remove(Song $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -55,8 +55,9 @@ class CatalogRepository extends ServiceEntityRepository
      */
     public function queryAll(): \Doctrine\ORM\QueryBuilder
     {
-        return $this->createQueryBuilder('c')
-            ->orderBy('c.updatedAt', 'DESC');
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.updatedAt', 'DESC');
     }
 }
+
 

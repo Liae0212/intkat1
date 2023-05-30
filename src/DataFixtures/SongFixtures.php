@@ -2,13 +2,13 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Catalog;
+use App\Entity\Song;
 use DateTimeImmutable;
 
 /**
- * Class CatalogFixtures
+ * Class SongFixtures
  */
-class CatalogFixtures extends AbstractBaseFixtures
+class SongFixtures extends AbstractBaseFixtures
 {
     /**
      * Load data.
@@ -16,10 +16,8 @@ class CatalogFixtures extends AbstractBaseFixtures
     public function loadData(): void
     {
         for ($i = 0; $i < 10; ++$i) {
-            $catalog = new Catalog();
+            $catalog = new Song();
             $catalog->setTitle($this->faker->sentence);
-            $catalog->setArtist($this->faker->name);
-            $catalog->setGenre($this->faker->word);
             $catalog->setCreatedAt(
                 DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
             );

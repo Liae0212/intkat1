@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Song Details - ID: {{ song.getId() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Song Details - ID: {{ song.getId() }}</h1>
+    <dl>
+        <dt>ID:</dt>
+        <dd>{{ song.getId() }}</dd>
+        <dt>Title:</dt>
+        <dd>{{ song.getTitle() }}</dd>
+        <dt>Created At:</dt>
+        <dd>{{ song.getCreatedAt()|date('Y-m-d H:i:s') }}</dd>
+        <dt>Updated At:</dt>
+        <dd>{{ song.getUpdatedAt()|date('Y-m-d H:i:s') }}</dd>
+    </dl>
+    <p>
+        <a href="{{ path('song_index') }}" title="Back to List">
+            Back to List
+        </a>
+    </p>
+{% endblock %}

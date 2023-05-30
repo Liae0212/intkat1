@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\CatalogRepository;
+use App\Repository\SongRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CatalogRepository::class)
  */
-class Catalog
+class Song
 {
     /**
      * @ORM\Id
@@ -22,16 +22,6 @@ class Catalog
      * @ORM\Column(length=255)
      */
     private ?string $title = null;
-
-    /**
-     * @ORM\Column(length=255)
-     */
-    private ?string $artist = null;
-
-    /**
-     * @ORM\Column(length=255)
-     */
-    private ?string $genre = null;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -56,28 +46,6 @@ class Catalog
     public function setTitle(string $title): self
     {
         $this->title = $title;
-        return $this;
-    }
-
-    public function getArtist(): ?string
-    {
-        return $this->artist;
-    }
-
-    public function setArtist(string $artist): self
-    {
-        $this->artist = $artist;
-        return $this;
-    }
-
-    public function getGenre(): ?string
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(string $genre): self
-    {
-        $this->genre = $genre;
         return $this;
     }
 

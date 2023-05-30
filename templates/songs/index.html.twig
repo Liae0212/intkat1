@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Song List
+{% endblock %}
+
+{% block body %}
+    <h1>Song List</h1>
+    {% if pagination is defined and pagination.items|length %}
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'ID', 'song.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Title', 'song.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Created At', 'song.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Updated At', 'song.updatedAt') }}</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for song in pagination.items %}
+                <tr>
+                    <td>{{ song.getId() }}</td>
+                    <td>{{ song.getTitle() }}</td>
+                    <td>{{ song.getCreatedAt()|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ song.getUpdatedAt()|date('Y-m-d H:i:s') }}</td>
+                    <td>
+                        <a href="{{ path('song_show', {'id': song.getId()}) }}" title="View">
+                            View
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    {% else %}
+        <p>No songs found.</p>
+    {% endif %}
+{% endblock %}
